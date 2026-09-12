@@ -41,12 +41,14 @@
       "@type": "WebSite",
       "name": "房贷计算器",
       "url": "https://tools.li00000.xyz/",
+      "inLanguage": ["zh-CN", "zh-Hant", "en", "ja"],
       "description": "免费在线房贷计算器，支持等额本息 / 等额本金对比。"
     },
     {
       "@type": "SoftwareApplication",
       "name": "房贷计算器",
       "url": "https://tools.li00000.xyz/mortgage.html",
+      "inLanguage": ["zh-CN", "zh-Hant", "en", "ja"],
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Web",
       "description": "单文件在线房贷计算工具，输出月供、总利息、还款明细，支持等额本息 / 等额本金模式切换。",
@@ -139,10 +141,750 @@
   .cta:hover { background: #4338ca; }
   .back-to-top { position: fixed; right: 16px; bottom: 16px; background: #fff; border: 1px solid #e4e4e7; border-radius: 999px; padding: 8px 14px; font-size: 12px; color: #52525b; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,.08); }
 </style>
+
+
+
+
+
+
+
+
+
+
 <!-- ===== 广告代码（弹窗）· 请勿删除 ===== -->
 <script src="https://pl31302792.profitableratecpmnetwork.com/b2/1e/d3/b21ed3648b5aa5e252b4c9bbc3ca40f8.js"></script>
 <script src="https://pl31302793.profitableratecpmnetwork.com/06/c0/31/06c031e2619ac836521ad0e77c8ed387.js"></script>
 <!-- ===== /广告代码 ===== -->
+<!-- ===== 多语言 i18n · 源码见 i18n/（runtime.html + dict.*.js），由 deploy.py 自动内联，请勿手改此副本 ===== -->
+<link rel="alternate" hreflang="zh-Hans" href="https://tools.li00000.xyz/">
+<link rel="alternate" hreflang="zh-Hant" href="https://tools.li00000.xyz/?lang=zh-Hant">
+<link rel="alternate" hreflang="en" href="https://tools.li00000.xyz/?lang=en">
+<link rel="alternate" hreflang="ja" href="https://tools.li00000.xyz/?lang=ja">
+<link rel="alternate" hreflang="x-default" href="https://tools.li00000.xyz/">
+<style>
+#i18n-sw{display:flex;align-items:center;gap:6px;flex:none}
+#i18n-sw svg{width:15px;height:15px;stroke:#a1a1aa;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+#i18n-sw select{font:inherit;font-size:12.5px;color:#52525b;background:#fff;border:1px solid #e4e4e7;border-radius:9px;padding:5px 26px 5px 10px;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 7px center;background-size:11px;transition:border-color .15s,color .15s}
+#i18n-sw select:hover,#i18n-sw select:focus{color:#4f46e5;border-color:#c7d2fe;outline:none}
+#i18n-sw.fixed{position:fixed;top:12px;right:14px;z-index:8000;background:#fff;border:1px solid #e4e4e7;border-radius:10px;padding:4px 7px;box-shadow:0 4px 16px rgba(0,0,0,.07)}
+.i18n-in-brand{margin-left:auto}
+@media (max-width:720px){#i18n-sw select{font-size:12px;padding:4px 24px 4px 8px}.i18n-in-top{margin-left:auto}}
+@media print{#i18n-sw{display:none!important}}
+</style>
+<script>
+(function(){
+  var LANGS = [['zh','简体中文'],['zh-Hant','繁體中文'],['en','English'],['ja','日本語']];
+  /* 词典内联在此处：让词典里的函数式替换能闭包到本作用域的 tr() */
+  /* 繁體中文（臺灣用語）— 房贷计算器多语言词典
+   键 = 简体中文原文（必须与页面文字完全一致） */
+window.__I18N = window.__I18N || {};
+window.__I18N['zh-Hant'] = {
+  m: {
+    title: '房貸計算器 · 月付 / 總利息 / 攤還明細',
+    titleHome: '房貸計算器 - 月付 / 總利息 / 本息平均攤還 vs 本金平均攤還 線上試算',
+    desc: '免費線上房貸計算器：輸入貸款金額、年利率、還款年限，即時試算本息平均攤還／本金平均攤還的每月還款、總利息與攤還明細，免登入。'
+  },
+  t: {
+    /* —— 品牌 / 通用 —— */
+    '房贷计算器': '房貸計算器',
+    '房': '房',
+    '年': '年',
+    '万元': '萬元',
+    '重置': '重設',
+    '实时刷新': '即時更新',
+    '房贷计算器 · 月供 / 总利息 / 还款明细': '房貸計算器 · 月付 / 總利息 / 攤還明細',
+    '房贷计算器 - 月供 / 总利息 / 等额本息 vs 等额本金 在线计算': '房貸計算器 - 月付 / 總利息 / 本息平均攤還 vs 本金平均攤還 線上試算',
+
+    /* —— 计算器界面 —— */
+    '贷款参数': '貸款條件',
+    '计算结果': '試算結果',
+    '还款方式': '還款方式',
+    '等额本息': '本息平均攤還',
+    '等额本金': '本金平均攤還',
+    '期数': '期數',
+    '利息': '利息',
+    '本金': '本金',
+    '剩余本金': '剩餘本金',
+    '月供 / 还款额': '月付 / 還款額',
+    '每月月供': '每月月付',
+    '首月': '首期',
+    '末月': '末期',
+    '当前': '目前',
+    '每月固定': '每月固定',
+    '· 逐月递减': '· 逐月遞減',
+    '首月月供': '首期月付',
+    '支持常见 30 / 50 / 100 / 200 / 300 万，可任意填写': '支援常見 30 / 50 / 100 / 200 / 300 萬，也可自行輸入',
+    '2024 年后常见 LPR 利率约 3.0–4.0%，公积金 2.6% 左右': '2024 年後常見 LPR 利率約 3.0–4.0%，公積金約 2.6%',
+    '单文件 · 零依赖 · 离线可用': '單一檔案 · 零依賴 · 離線可用',
+    '两种均可查看明细，并自动对比总利息': '兩者皆可查看明細，並自動比較總利息',
+
+    /* —— 首页 SEO 正文 —— */
+    '什么是房贷计算器？': '什麼是房貸計算器？',
+    '月供公式': '月付計算公式',
+    '两种还款方式对比': '兩種還款方式比較',
+    '如何使用本计算器': '如何使用本計算器',
+    '常见问题（FAQ）': '常見問題（FAQ）',
+    '使用建议': '使用建議',
+    '维度': '項目',
+    '月供金额': '月付金額',
+    '总利息': '總利息',
+    '现金流': '現金流',
+    '适合人群': '適合對象',
+    '提前还款': '提前還款',
+    '逐月递减': '逐月遞減',
+    '略高': '略高',
+    '略低': '略低',
+    '稳定易规划': '穩定好規劃',
+    '前期压力更大': '前期壓力較大',
+    '收入稳定、追求平稳': '收入穩定、追求安穩',
+    '现金流充裕、希望省利息': '現金流充裕、想省利息',
+    '前期收益更大': '前期效益較大',
+    '收益略小': '效益略小',
+    '1. 什么是等额本息？': '1. 什麼是本息平均攤還？',
+    '2. 什么是等额本金？': '2. 什麼是本金平均攤還？',
+    '3. LPR 利率怎么查？': '3. LPR 利率怎麼查？',
+    '4. 公积金利率和商贷利率差多少？': '4. 公積金利率和商業貸款利率差多少？',
+    '5. 提前还款划算吗？': '5. 提前還款划算嗎？',
+    '每月还款总额相同，利息占比逐月下降、本金占比逐月上升，每月还款额固定，便于现金流规划。':
+      '每月還款總額相同，利息比重逐月下降、本金比重逐月上升，每月還款額固定，方便現金流規劃。',
+    '每月偿还的本金固定，利息随余额递减，总利息更低，但前期月供更高。':
+      '每月償還的本金固定，利息隨餘額遞減，總利息較低，但前期月付較高。',
+    'LPR（贷款市场报价利率）可在中国人民银行官网或各大银行 APP 查询，5 年期以上 LPR 通常用作商贷利率基准。':
+      'LPR（貸款市場報價利率）可在中國人民銀行官網或各大銀行 APP 查詢，5 年期以上 LPR 通常作為商業貸款利率基準。',
+    '公积金贷款利率通常比商贷低 1~1.5 个百分点，5 年以上当前约 2.6%，能组合使用公积金贷款可显著降低总利息。':
+      '公積金貸款利率通常比商業貸款低 1~1.5 個百分點，5 年以上目前約 2.6%，可搭配使用能明顯降低總利息。',
+    '越早、越快越划算（减少剩余利息）；等额本息前期利息占比大，前期提前还款收益最明显。':
+      '越早、越快越划算（可減少剩餘利息）；本息平均攤還前期利息比重較大，前期提前還款效益最明顯。',
+    '房贷计算器是一种金融估算工具，用于在购房前预估每月的还贷压力和整笔贷款的利息支出。你只需填写贷款本金、年利率与还款期限，工具就会基于银行通用还款公式，输出月供金额、总利息、还款总额，以及每一期的本金与利息构成。':
+      '房貸計算器是一種財務試算工具，用於在購屋前預估每月的還款壓力與整筆貸款的利息支出。只要輸入貸款本金、年利率與還款年限，工具就會依銀行通用攤還公式，算出每月還款金額、總利息、還款總額，以及每一期的本金與利息組成。',
+    '对于准备买房或考虑提前还款的用户，它可以帮助你在做决策前快速比较不同利率、不同期限、不同还款方式之间的总利息差异，避免凭感觉判断。':
+      '對於準備購屋或考慮提前還款的人，它可以在做決定前快速比較不同利率、不同年限、不同還款方式之間的總利息差異，不再只憑感覺判斷。',
+    '本工具为纯前端估算，仅供决策参考，实际以银行还款计划为准。单文件、零依赖、无构建，数据仅存本地。':
+      '本工具為純前端試算，僅供決策參考，實際仍以銀行還款計畫為準。單一檔案、零依賴、無需建置，資料只存在本機。',
+    '查看还款明细表：前 12 期 + 合计行，了解本金 / 利息逐月变化。':
+      '查看攤還明細表：前 12 期 + 合計列，了解本金 / 利息逐月變化。',
+    '常见问题': '常見問題',
+    '如何使用': '如何使用',
+    '什么是房贷计算器': '什麼是房貸計算器',
+
+    /* —— 浮动操作条 —— */
+    '分享': '分享',
+    '收藏': '收藏',
+    '跳转': '跳轉',
+    '顶部': '頂部',
+    '回到顶部': '回到頂部',
+    '本页导航': '本頁導覽',
+    '我的其他站点': '我的其他網站',
+    '房贷计算器首页': '房貸計算器首頁',
+    '在线房贷计算器': '線上房貸計算器',
+    '在线PS': '線上 PS',
+    '养老博客': '退休規劃部落格',
+    '免费在线图片编辑': '免費線上圖片編輯',
+    '三语退休规划指南': '三語退休規劃指南',
+    '链接已复制，可粘贴分享给朋友': '連結已複製，可貼給朋友分享',
+    '已收藏（按 Ctrl+D 可加入浏览器书签）': '已收藏（按 Ctrl+D 可加入瀏覽器書籤）',
+    '已取消收藏': '已取消收藏',
+    '请手动复制地址栏链接分享': '請手動複製網址分享',
+    '贷款金额': '貸款金額',
+    '年利率': '年利率',
+    '还款期限': '還款年限',
+    '还款总额': '還款總額',
+    '还款期数': '還款期數',
+    '本金 + 利息': '本金 + 利息',
+    '本金 / 利息 占比': '本金 / 利息 佔比',
+    '首': '首',
+    '算': '算',
+    '博': '博',
+    '贷款金额指': '貸款金額指',
+    '贷款本金': '貸款本金',
+    '（非房价）。等额本息每月固定还款；等额本金每月本金固定、利息随余额递减。': '（非房價）。本息平均攤還每月固定還款；本金平均攤還每月本金固定、利息隨餘額遞減。',
+    '计算为估算，实际以银行还款计划为准。单文件 · 纯前端 · 数据仅存本地，刷新即重置。': '計算為估算，實際以銀行還款計畫為準。單一檔案 · 純前端 · 資料只存在本機，重新整理即重設。'
+  },
+  /* 含内联标签的整段（键 = 该段纯文本，空白已压缩） */
+  b: {
+    '等额本息：每月还款额固定。公式为： M = P × [ r × (1+r)^n ] / [ (1+r)^n − 1 ] 其中 M 为每月月供，P 为贷款本金，r 为月利率（年利率 ÷ 12），n 为还款期数。':
+      '<b>本息平均攤還</b>：每月還款額固定。公式為：<br><span style="background:#f8f8f9;padding:6px 10px;border-radius:6px;font-size:13px;display:inline-block;margin:6px 0;">M = P × [ r × (1+r)^n ] / [ (1+r)^n − 1 ]</span><br>其中 <b>M</b> 為每月月付，<b>P</b> 為貸款本金，<b>r</b> 為月利率（年利率 ÷ 12），<b>n</b> 為還款期數。',
+    '等额本金：每月本金固定、利息逐月递减。首月还款最高，末月最低。总利息通常比等额本息更低，但前期压力更大。':
+      '<b>本金平均攤還</b>：每月本金固定、利息逐月遞減。首期還款最高，末期最低。總利息通常比本息平均攤還低，但前期壓力較大。',
+    '一个免费在线房贷计算工具：输入贷款金额、年利率、还款期限，在等额本息 / 等额本金之间切换，实时计算每月月供、总利息、还款总额，并展开逐期还款明细表。':
+      '一個免費線上房貸試算工具：輸入貸款金額、年利率、還款年限，在<b>本息平均攤還 / 本金平均攤還</b>之間切換，即時算出每月還款、總利息、還款總額，並展開逐期攤還明細表。',
+    '填写年利率（%），可点 2.6 / 3.0 / 3.5 / 4.0 / 4.5% 常用档位；公积金贷款利率通常约 2.6%，商贷 LPR 约 3.0–4.0%。':
+      '填寫<b>年利率</b>（%），可點 2.6 / 3.0 / 3.5 / 4.0 / 4.5% 常用級距；公積金貸款利率通常約 2.6%，商業貸款 LPR 約 3.0–4.0%。',
+    '填写贷款金额（单位：万元），可用 30 / 50 / 100 / 200 / 300 万快捷档位，也可自定义。':
+      '填寫<b>貸款金額</b>（單位：萬元），可用 30 / 50 / 100 / 200 / 300 萬快速級距，也可自行輸入。',
+    '切换还款方式（等额本息 / 等额本金），自动对比总利息并给出建议。':
+      '切換<b>還款方式</b>（本息平均攤還 / 本金平均攤還），自動比較總利息並提供建議。',
+    '选择还款期限（年），常用 10 / 20 / 25 / 30 年。':
+      '選擇<b>還款年限</b>（年），常用 10 / 20 / 25 / 30 年。',
+    '点击打开计算器 →开始计算。':
+      '點擊<a href="./mortgage.html" class="cta">打開計算器 →</a>開始試算。',
+    '优先用公积金：有公积金余额 / 可提取的，优先使用公积金贷款或组合贷。':
+      '<b>優先使用公積金</b>：有公積金餘額 / 可提取的，優先使用公積金貸款或組合貸。',
+    '总利息 < 月供压力：选择哪种还款方式取决于你更在意「现金流平稳」还是「总利息最低」。':
+      '<b>總利息 &lt; 月付壓力</b>：選擇哪種還款方式取決於你更在意「現金流平穩」還是「總利息最低」。',
+    '保留灵活性：若预期未来有较多闲钱，选等额本金 + 提前还款方案更划算。':
+      '<b>保留彈性</b>：若預期未來有較多閒錢，選本金平均攤還 + 提前還款更划算。',
+    '避免高杠杆：月供占家庭月收入比例建议控制在 30%–40% 以内。':
+      '<b>避免高槓桿</b>：月付占家庭月收入比例建議控制在 30%–40% 以內。',
+    '输入贷款金额、年利率、还款期限，在等额本息 / 等额本金之间对比。实时输出月供、总利息、还款总额，并展开完整还款明细。':
+      '輸入貸款金額、年利率、還款年限，在<b>本息平均攤還 / 本金平均攤還</b>之間比較。即時輸出每月還款、總利息、還款總額，並展開完整攤還明細。'
+  },
+  /* 含变量的动态串（正则 → 替换文本，$1 为原值） */
+  p: [
+    [/^还款明细（前 12 期 · 共 (.+) 期）$/, function(m,a){ return '攤還明細（前 12 期 · 共 ' + a + ' 期）'; }],
+    [/^等额本息月供固定更易规划，总利息稍高 (.+)。$/, function(m,a){ return '本息平均攤還每月固定、較好規劃，總利息約多 ' + tr(a) + '。'; }],
+    [/^等额本金总利息更低，可省 (.+)；但前期月供压力更大。$/, function(m,a){ return '本金平均攤還總利息較低，可省 ' + tr(a) + '；但前期還款壓力較大。'; }],
+    [/^每月还款（(.*)）$/, function(m,a){ return '每月還款（' + tr(a) + '）'; }],
+    [/^合计（([\d,.]+) 期）$/, function(m,n){ return '合計（' + n + ' 期）'; }],
+    [/^共 ([\d,.]+) 期 · 利率 (.+)$/, function(m,a,b){ return '共 ' + a + ' 期 · 利率 ' + b; }],
+    [/^首 (.+) \/ 末 (.+)$/, function(m,a,b){ return '首期 ' + a + ' / 末期 ' + b; }],
+    [/^占本金 (.+)$/, function(m,a){ return '占本金 ' + a; }],
+    [/^本金 (.+)$/, function(m,a){ return '本金 ' + tr(a); }],
+    [/^利息 (.+)$/, function(m,a){ return '利息 ' + tr(a); }],
+    [/^[¥￥]([\d,.]+)\s*万(\s*万)?$/, function(m,sym,num){ return '¥' + num + ' 萬'; }],
+    [/^(\d+) 万$/, function(m,n){ return n + ' 萬'; }],
+    [/^(\d+) 年$/, function(m,n){ return n + ' 年'; }]
+  ]
+};
+
+/* English — 房贷计算器多语言词典（键 = 简体中文原文） */
+window.__I18N = window.__I18N || {};
+window.__I18N['en'] = {
+  m: {
+    title: 'Mortgage Calculator · Monthly Payment, Total Interest & Amortization',
+    titleHome: 'Mortgage Calculator - Monthly Payment, Total Interest, Equal Payment vs Equal Principal',
+    desc: 'Free online mortgage calculator: enter loan amount, annual rate and term to get monthly payment, total interest and a full amortization schedule for equal-payment (amortized) or equal-principal loans. No sign-up.'
+  },
+  t: {
+    /* brand / common */
+    '房贷计算器': 'Mortgage Calculator',
+    '房': 'M',
+    '年': 'yr',
+    '万元': 'k',
+    '重置': 'Reset',
+    '实时刷新': 'Live',
+    '房贷计算器 · 月供 / 总利息 / 还款明细': 'Mortgage Calculator · Payment, Total Interest & Schedule',
+    '房贷计算器 - 月供 / 总利息 / 等额本息 vs 等额本金 在线计算': 'Mortgage Calculator - Monthly Payment, Total Interest, Equal Payment vs Equal Principal',
+
+    /* calculator UI */
+    '贷款参数': 'Loan details',
+    '计算结果': 'Results',
+    '还款方式': 'Repayment method',
+    '等额本息': 'Equal payment',
+    '等额本金': 'Equal principal',
+    '期数': 'Terms',
+    '利息': 'Interest',
+    '本金': 'Principal',
+    '剩余本金': 'Balance',
+    '月供 / 还款额': 'Payment',
+    '每月月供': 'Monthly payment',
+    '首月': 'First',
+    '末月': 'Last',
+    '当前': 'Now',
+    '每月固定': 'Fixed monthly',
+    '· 逐月递减': '· decreasing',
+    '首月月供': 'First payment',
+    '支持常见 30 / 50 / 100 / 200 / 300 万，可任意填写': 'Common sizes 300k / 500k / 1M / 2M / 3M CNY — or enter any amount',
+    '2024 年后常见 LPR 利率约 3.0–4.0%，公积金 2.6% 左右': 'Typical LPR since 2024: 3.0–4.0%; provident fund: about 2.6%',
+    '单文件 · 零依赖 · 离线可用': 'Single file · No dependencies · Works offline',
+    '两种均可查看明细，并自动对比总利息': 'Both show full schedules and compare total interest automatically',
+
+    /* home page SEO copy */
+    '什么是房贷计算器？': 'What is a mortgage calculator?',
+    '月供公式': 'Payment formula',
+    '两种还款方式对比': 'Comparing the two methods',
+    '如何使用本计算器': 'How to use this calculator',
+    '常见问题（FAQ）': 'FAQ',
+    '使用建议': 'Tips',
+    '维度': 'Item',
+    '月供金额': 'Monthly payment',
+    '总利息': 'Total interest',
+    '现金流': 'Cash flow',
+    '适合人群': 'Best for',
+    '提前还款': 'Early repayment',
+    '逐月递减': 'Decreases monthly',
+    '略高': 'Slightly higher',
+    '略低': 'Slightly lower',
+    '稳定易规划': 'Stable, easy to plan',
+    '前期压力更大': 'Heavier early on',
+    '收入稳定、追求平稳': 'Steady income, prefer stability',
+    '现金流充裕、希望省利息': 'Strong cash flow, want to save interest',
+    '前期收益更大': 'Bigger early benefit',
+    '收益略小': 'Slightly smaller benefit',
+    '1. 什么是等额本息？': '1. What is equal-payment (amortized)?',
+    '2. 什么是等额本金？': '2. What is equal-principal?',
+    '3. LPR 利率怎么查？': '3. Where can I find the LPR rate?',
+    '4. 公积金利率和商贷利率差多少？': '4. How much lower is the provident fund rate?',
+    '5. 提前还款划算吗？': '5. Is early repayment worth it?',
+    '每月还款总额相同，利息占比逐月下降、本金占比逐月上升，每月还款额固定，便于现金流规划。':
+      'The monthly total stays the same: the interest share falls and the principal share rises each month, so payments are fixed and easy to budget.',
+    '每月偿还的本金固定，利息随余额递减，总利息更低，但前期月供更高。':
+      'The principal repaid each month is fixed, interest falls with the balance, total interest is lower — but early payments are higher.',
+    'LPR（贷款市场报价利率）可在中国人民银行官网或各大银行 APP 查询，5 年期以上 LPR 通常用作商贷利率基准。':
+      'The LPR (Loan Prime Rate) is published by the People\u2019s Bank of China and in major bank apps; the 5-year-plus LPR is the usual benchmark for commercial mortgages.',
+    '公积金贷款利率通常比商贷低 1~1.5 个百分点，5 年以上当前约 2.6%，能组合使用公积金贷款可显著降低总利息。':
+      'Provident fund rates run about 1\u20131.5 points below commercial loans (about 2.6% for 5+ years); combining the two clearly lowers total interest.',
+    '越早、越快越划算（减少剩余利息）；等额本息前期利息占比大，前期提前还款收益最明显。':
+      'The earlier and larger the prepayment, the more you save; with equal-payment loans interest is front-loaded, so early prepayment pays off most.',
+    '房贷计算器是一种金融估算工具，用于在购房前预估每月的还贷压力和整笔贷款的利息支出。你只需填写贷款本金、年利率与还款期限，工具就会基于银行通用还款公式，输出月供金额、总利息、还款总额，以及每一期的本金与利息构成。':
+      'A mortgage calculator is a financial estimating tool that shows the monthly burden of a home loan and the total interest it costs. Enter the principal, annual rate and term, and it applies the standard bank amortization formula to produce the monthly payment, total interest, total repaid, and the principal/interest split for every period.',
+    '对于准备买房或考虑提前还款的用户，它可以帮助你在做决策前快速比较不同利率、不同期限、不同还款方式之间的总利息差异，避免凭感觉判断。':
+      'If you are buying a home or weighing early repayment, it lets you compare total interest across different rates, terms and repayment methods before you decide \u2014 instead of guessing.',
+    '本工具为纯前端估算，仅供决策参考，实际以银行还款计划为准。单文件、零依赖、无构建，数据仅存本地。':
+      'This is a front-end estimate for reference only; your bank\u2019s repayment schedule governs. Single file, no dependencies, no build step \u2014 data stays on your device.',
+    '查看还款明细表：前 12 期 + 合计行，了解本金 / 利息逐月变化。':
+      'Open the schedule: first 12 periods plus totals, showing how principal and interest shift month by month.',
+    '常见问题': 'FAQ',
+    '如何使用': 'How to use',
+    '什么是房贷计算器': 'What is a mortgage calculator',
+
+    /* floating action bar */
+    '分享': 'Share',
+    '收藏': 'Save',
+    '跳转': 'Jump',
+    '顶部': 'Top',
+    '回到顶部': 'Back to top',
+    '本页导航': 'On this page',
+    '我的其他站点': 'My other sites',
+    '房贷计算器首页': 'Calculator home',
+    '在线房贷计算器': 'Online calculator',
+    '在线PS': 'Online PS',
+    '养老博客': 'Retirement blog',
+    '免费在线图片编辑': 'Free online image editor',
+    '三语退休规划指南': 'Trilingual retirement guide',
+    '链接已复制，可粘贴分享给朋友': 'Link copied \u2014 paste it to share',
+    '已收藏（按 Ctrl+D 可加入浏览器书签）': 'Saved \u2014 press Ctrl+D to bookmark in your browser',
+    '已取消收藏': 'Removed from saved',
+    '请手动复制地址栏链接分享': 'Please copy the address bar link to share',
+    '贷款金额': 'Loan amount',
+    '年利率': 'Annual rate',
+    '还款期限': 'Term',
+    '还款总额': 'Total repaid',
+    '还款期数': 'Periods',
+    '本金 + 利息': 'Principal + interest',
+    '本金 / 利息 占比': 'Principal vs interest',
+    '首': 'H',
+    '算': 'C',
+    '博': 'B',
+    '贷款金额指': 'The loan amount is the ',
+    '贷款本金': 'principal borrowed',
+    '（非房价）。等额本息每月固定还款；等额本金每月本金固定、利息随余额递减。': ' (not the property price). Equal payment keeps a fixed monthly payment; equal principal repays a fixed principal each month with interest falling as the balance drops.',
+    '计算为估算，实际以银行还款计划为准。单文件 · 纯前端 · 数据仅存本地，刷新即重置。': 'This is an estimate — your bank’s repayment schedule governs. Single file, front-end only; data stays on this device and resets on reload.'
+  },
+  b: {
+    '等额本息：每月还款额固定。公式为： M = P × [ r × (1+r)^n ] / [ (1+r)^n − 1 ] 其中 M 为每月月供，P 为贷款本金，r 为月利率（年利率 ÷ 12），n 为还款期数。':
+      '<b>Equal payment</b>: the monthly total never changes. Formula:<br><span style="background:#f8f8f9;padding:6px 10px;border-radius:6px;font-size:13px;display:inline-block;margin:6px 0;">M = P × [ r × (1+r)^n ] / [ (1+r)^n − 1 ]</span><br>where <b>M</b> is the monthly payment, <b>P</b> the principal, <b>r</b> the monthly rate (annual rate ÷ 12) and <b>n</b> the number of periods.',
+    '等额本金：每月本金固定、利息逐月递减。首月还款最高，末月最低。总利息通常比等额本息更低，但前期压力更大。':
+      '<b>Equal principal</b>: a fixed principal each month with interest falling month by month. The first payment is the highest and the last the lowest. Total interest is usually lower than the equal-payment method, but early payments are heavier.',
+    '一个免费在线房贷计算工具：输入贷款金额、年利率、还款期限，在等额本息 / 等额本金之间切换，实时计算每月月供、总利息、还款总额，并展开逐期还款明细表。':
+      'A free online mortgage tool: enter the loan amount, annual rate and term, switch between <b>equal payment</b> and <b>equal principal</b>, and instantly get the monthly payment, total interest, total repaid and a period-by-period schedule.',
+    '填写年利率（%），可点 2.6 / 3.0 / 3.5 / 4.0 / 4.5% 常用档位；公积金贷款利率通常约 2.6%，商贷 LPR 约 3.0–4.0%。':
+      'Enter the <b>annual rate</b> (%); quick presets are 2.6 / 3.0 / 3.5 / 4.0 / 4.5%. Provident fund loans run about 2.6%, commercial LPR-based loans about 3.0–4.0%.',
+    '填写贷款金额（单位：万元），可用 30 / 50 / 100 / 200 / 300 万快捷档位，也可自定义。':
+      'Enter the <b>loan amount</b> (in 10k CNY); quick presets are 30 / 50 / 100 / 200 / 300 (i.e. 300k to 3M CNY), or type your own.',
+    '切换还款方式（等额本息 / 等额本金），自动对比总利息并给出建议。':
+      'Switch the <b>repayment method</b> (equal payment / equal principal) to compare total interest automatically.',
+    '选择还款期限（年），常用 10 / 20 / 25 / 30 年。':
+      'Choose the <b>term</b> in years \u2014 10 / 20 / 25 / 30 are the usual choices.',
+    '点击打开计算器 →开始计算。':
+      'Click <a href="./mortgage.html" class="cta">Open the calculator →</a> to start.',
+    '优先用公积金：有公积金余额 / 可提取的，优先使用公积金贷款或组合贷。':
+      '<b>Use the provident fund first</b>: if you have a balance you can draw on, prefer a provident fund loan or a combined loan.',
+    '总利息 < 月供压力：选择哪种还款方式取决于你更在意「现金流平稳」还是「总利息最低」。':
+      '<b>Total interest vs monthly pressure</b>: the right method depends on whether you value steady cash flow or the lowest total interest.',
+    '保留灵活性：若预期未来有较多闲钱，选等额本金 + 提前还款方案更划算。':
+      '<b>Keep flexibility</b>: if you expect spare cash later, equal principal plus early repayment works out better.',
+    '避免高杠杆：月供占家庭月收入比例建议控制在 30%–40% 以内。':
+      '<b>Avoid high leverage</b>: keep the monthly payment within 30\u201340% of household income.',
+    '输入贷款金额、年利率、还款期限，在等额本息 / 等额本金之间对比。实时输出月供、总利息、还款总额，并展开完整还款明细。':
+      'Enter the loan amount, annual rate and term and compare <b>equal payment</b> with <b>equal principal</b>. Instantly see the monthly payment, total interest and total repaid, plus the full schedule.'
+  },
+  p: [
+    [/^还款明细（前 12 期 · 共 (.+) 期）$/, function(m,a){ return 'Schedule (first 12 of ' + a + ' periods)'; }],
+    [/^等额本息月供固定更易规划，总利息稍高 (.+)。$/, function(m,a){ return 'Equal payments stay the same and are easier to plan; total interest is about ' + tr(a) + ' higher.'; }],
+    [/^等额本金总利息更低，可省 (.+)；但前期月供压力更大。$/, function(m,a){ return 'Equal principal costs less interest \u2014 you save ' + tr(a) + ' \u2014 but early payments are heavier.'; }],
+    [/^每月还款（(.*)）$/, function(m,a){ return 'Monthly payment (' + tr(a) + ')'; }],
+    [/^合计（([\d,.]+) 期）$/, function(m,n){ return 'Total (' + n + ' periods)'; }],
+    [/^共 ([\d,.]+) 期 · 利率 (.+)$/, function(m,a,b){ return a + ' periods \u00b7 rate ' + b; }],
+    [/^首 (.+) \/ 末 (.+)$/, function(m,a,b){ return 'First ' + tr(a) + ' / Last ' + tr(b); }],
+    [/^占本金 (.+)$/, function(m,a){ return 'of principal ' + a; }],
+    [/^本金 (.+)$/, function(m,a){ return 'Principal ' + tr(a); }],
+    [/^利息 (.+)$/, function(m,a){ return 'Interest ' + tr(a); }],
+    [/^[¥￥]([\d,.]+)\s*万(\s*万)?$/, function(m,num){ return '¥' + Math.round(parseFloat(num.replace(/,/g,'')) * 10000).toLocaleString('en-US'); }],
+    [/^(\d+) 万$/, function(m,n){ var v = parseInt(n,10); return v >= 100 ? (v/100) + 'M' : (v*10) + 'k'; }],
+    [/^(\d+) 年$/, function(m,n){ return n + ' yr'; }]
+  ]
+};
+
+/* 日本語 — 房贷计算器多语言词典（键 = 简体中文原文） */
+window.__I18N = window.__I18N || {};
+window.__I18N['ja'] = {
+  m: {
+    title: '住宅ローン計算機 · 毎月返済額 / 利息合計 / 返済予定表',
+    titleHome: '住宅ローン計算機 - 毎月返済額・利息合計・元利均等 vs 元金均等',
+    desc: '無料のオンライン住宅ローン計算機。借入額・年利・返済期間を入力すると、元利均等返済／元金均等返済の毎月返済額・利息合計・返済予定表をその場で計算します。登録不要。'
+  },
+  t: {
+    /* ブランド / 共通 */
+    '房贷计算器': '住宅ローン計算機',
+    '房': '住',
+    '年': '年',
+    '万元': '万元',
+    '重置': 'リセット',
+    '实时刷新': 'リアルタイム',
+    '房贷计算器 · 月供 / 总利息 / 还款明细': '住宅ローン計算機 · 毎月返済額 / 利息合計 / 返済予定表',
+    '房贷计算器 - 月供 / 总利息 / 等额本息 vs 等额本金 在线计算': '住宅ローン計算機 - 毎月返済額・利息合計・元利均等 vs 元金均等',
+
+    /* 計算機の画面 */
+    '贷款参数': 'ローンの条件',
+    '计算结果': '計算結果',
+    '还款方式': '返済方式',
+    '等额本息': '元利均等返済',
+    '等额本金': '元金均等返済',
+    '期数': '回数',
+    '利息': '利息',
+    '本金': '元金',
+    '剩余本金': '残元金',
+    '月供 / 还款额': '毎月返済額',
+    '每月月供': '毎月返済額',
+    '首月': '初回',
+    '末月': '最終回',
+    '当前': '現在',
+    '每月固定': '毎月一定',
+    '· 逐月递减': '· 毎月递减',
+    '首月月供': '初回返済額',
+    '支持常见 30 / 50 / 100 / 200 / 300 万，可任意填写': 'よく使う 30 / 50 / 100 / 200 / 300 万元のほか、自由に入力できます',
+    '2024 年后常见 LPR 利率约 3.0–4.0%，公积金 2.6% 左右': '2024年以降の一般的な LPR は約 3.0〜4.0%、積立金は 2.6% 前後',
+    '单文件 · 零依赖 · 离线可用': '単一ファイル・依存なし・オフライン可',
+    '两种均可查看明细，并自动对比总利息': 'どちらも明細を表示し、利息合計を自動比較します',
+
+    /* トップページの解説 */
+    '什么是房贷计算器？': '住宅ローン計算機とは？',
+    '月供公式': '返済額の計算式',
+    '两种还款方式对比': '2つの返済方式の比較',
+    '如何使用本计算器': 'この計算機の使い方',
+    '常见问题（FAQ）': 'よくある質問（FAQ）',
+    '使用建议': 'アドバイス',
+    '维度': '項目',
+    '月供金额': '毎月返済額',
+    '总利息': '利息合計',
+    '现金流': 'キャッシュフロー',
+    '适合人群': '向いている人',
+    '提前还款': '繰上返済',
+    '逐月递减': '毎月递减',
+    '略高': 'やや高い',
+    '略低': 'やや低い',
+    '稳定易规划': '安定して計画しやすい',
+    '前期压力更大': '当初の負担が大きい',
+    '收入稳定、追求平稳': '収入が安定し、安定志向',
+    '现金流充裕、希望省利息': '資金に余裕があり利息を抑えたい',
+    '前期收益更大': '当初の効果が大きい',
+    '收益略小': '効果はやや小さい',
+    '1. 什么是等额本息？': '1. 元利均等返済とは？',
+    '2. 什么是等额本金？': '2. 元金均等返済とは？',
+    '3. LPR 利率怎么查？': '3. LPR 金利はどこで確認する？',
+    '4. 公积金利率和商贷利率差多少？': '4. 積立金と商業ローンの金利差は？',
+    '5. 提前还款划算吗？': '5. 繰上返済は得ですか？',
+    '每月还款总额相同，利息占比逐月下降、本金占比逐月上升，每月还款额固定，便于现金流规划。':
+      '毎月の返済総額は一定で、利息の割合が毎月下がり元金の割合が上がります。返済額が固定なので家計の計画が立てやすくなります。',
+    '每月偿还的本金固定，利息随余额递减，总利息更低，但前期月供更高。':
+      '毎月返済する元金が一定で、利息は残高に応じて減っていきます。利息合計は少なくなりますが、当初の返済額は高くなります。',
+    'LPR（贷款市场报价利率）可在中国人民银行官网或各大银行 APP 查询，5 年期以上 LPR 通常用作商贷利率基准。':
+      'LPR（最優遇貸出金利）は中国人民銀行の公式サイトや各行のアプリで確認できます。5年超の LPR が商業ローンの基準金利として使われます。',
+    '公积金贷款利率通常比商贷低 1~1.5 个百分点，5 年以上当前约 2.6%，能组合使用公积金贷款可显著降低总利息。':
+      '住宅積立金の金利は商業ローンより通常 1〜1.5 ポイント低く、5年超で現在約 2.6% です。併用すると利息合計を大きく減らせます。',
+    '越早、越快越划算（减少剩余利息）；等额本息前期利息占比大，前期提前还款收益最明显。':
+      '早く・多く繰上返済するほど得です（残りの利息を減らせます）。元利均等返済は当初の利息割合が大きいため、早めの繰上返済の効果が最も大きくなります。',
+    '房贷计算器是一种金融估算工具，用于在购房前预估每月的还贷压力和整笔贷款的利息支出。你只需填写贷款本金、年利率与还款期限，工具就会基于银行通用还款公式，输出月供金额、总利息、还款总额，以及每一期的本金与利息构成。':
+      '住宅ローン計算機は、住宅購入前に毎月の返済負担とローンの利息総額を試算するためのツールです。借入額・年利・返済期間を入力すると、銀行で一般的な返済計算式に基づき、毎月返済額・利息合計・返済総額、そして各回の元金と利息の内訳を算出します。',
+    '对于准备买房或考虑提前还款的用户，它可以帮助你在做决策前快速比较不同利率、不同期限、不同还款方式之间的总利息差异，避免凭感觉判断。':
+      '住宅購入を検討している方や繰上返済を考えている方にとって、金利・期間・返済方式の違いによる利息合計の差を、判断する前に素早く比較できます。勘に頼らずに済みます。',
+    '本工具为纯前端估算，仅供决策参考，实际以银行还款计划为准。单文件、零依赖、无构建，数据仅存本地。':
+      '本ツールはフロントエンドのみの概算で、参考情報です。実際の返済は銀行の返済計画によります。単一ファイル・依存なし・ビルド不要で、データは端末内にのみ保存されます。',
+    '查看还款明细表：前 12 期 + 合计行，了解本金 / 利息逐月变化。':
+      '返済予定表を開くと、最初の 12 回と合計行で元金 / 利息の毎月の変化がわかります。',
+    '常见问题': 'よくある質問',
+    '如何使用': '使い方',
+    '什么是房贷计算器': '住宅ローン計算機とは',
+
+    /* フローティングバー */
+    '分享': '共有',
+    '收藏': '保存',
+    '跳转': '移動',
+    '顶部': 'トップ',
+    '回到顶部': 'トップへ戻る',
+    '本页导航': 'このページ内',
+    '我的其他站点': '他のサイト',
+    '房贷计算器首页': '計算機トップ',
+    '在线房贷计算器': 'オンライン計算機',
+    '在线PS': 'オンラインPS',
+    '养老博客': '老後ブログ',
+    '免费在线图片编辑': '無料オンライン画像編集',
+    '三语退休规划指南': '3か国語の老後ガイド',
+    '链接已复制，可粘贴分享给朋友': 'リンクをコピーしました。貼り付けて共有できます',
+    '已收藏（按 Ctrl+D 可加入浏览器书签）': '保存しました（Ctrl+D でブラウザのブックマークに追加できます）',
+    '已取消收藏': '保存を解除しました',
+    '请手动复制地址栏链接分享': 'アドレスバーのリンクをコピーして共有してください',
+    '贷款金额': '借入額',
+    '年利率': '年利',
+    '还款期限': '返済期間',
+    '还款总额': '返済総額',
+    '还款期数': '返済回数',
+    '本金 + 利息': '元金 + 利息',
+    '本金 / 利息 占比': '元金・利息の割合',
+    '首': 'ト',
+    '算': '計',
+    '博': 'ブ',
+    '贷款金额指': '借入額は',
+    '贷款本金': '借入元金',
+    '（非房价）。等额本息每月固定还款；等额本金每月本金固定、利息随余额递减。': '（物件価格ではありません）。元利均等は毎月一定の返済、元金均等は毎月の元金が一定で、利息は残高に応じて減ります。',
+    '计算为估算，实际以银行还款计划为准。单文件 · 纯前端 · 数据仅存本地，刷新即重置。': '概算です。実際は銀行の返済計画によります。単一ファイル・フロントエンドのみ、データは端末内に保存され、再読み込みでリセットされます。'
+  },
+  b: {
+    '等额本息：每月还款额固定。公式为： M = P × [ r × (1+r)^n ] / [ (1+r)^n − 1 ] 其中 M 为每月月供，P 为贷款本金，r 为月利率（年利率 ÷ 12），n 为还款期数。':
+      '<b>元利均等返済</b>：毎月の返済額が一定です。計算式：<br><span style="background:#f8f8f9;padding:6px 10px;border-radius:6px;font-size:13px;display:inline-block;margin:6px 0;">M = P × [ r × (1+r)^n ] / [ (1+r)^n − 1 ]</span><br><b>M</b> は毎月返済額、<b>P</b> は借入元金、<b>r</b> は月利（年利 ÷ 12）、<b>n</b> は返済回数です。',
+    '等额本金：每月本金固定、利息逐月递减。首月还款最高，末月最低。总利息通常比等额本息更低，但前期压力更大。':
+      '<b>元金均等返済</b>：毎月の元金が一定で、利息は毎月減っていきます。初回の返済額が最も高く、最終回が最も低くなります。利息合計は元利均等より少ないことが多いですが、当初の負担は大きくなります。',
+    '一个免费在线房贷计算工具：输入贷款金额、年利率、还款期限，在等额本息 / 等额本金之间切换，实时计算每月月供、总利息、还款总额，并展开逐期还款明细表。':
+      '無料のオンライン住宅ローン試算ツールです。借入額・年利・返済期間を入力し、<b>元利均等返済 / 元金均等返済</b>を切り替えると、毎月返済額・利息合計・返済総額をその場で計算し、回ごとの返済予定表も表示します。',
+    '填写年利率（%），可点 2.6 / 3.0 / 3.5 / 4.0 / 4.5% 常用档位；公积金贷款利率通常约 2.6%，商贷 LPR 约 3.0–4.0%。':
+      '<b>年利</b>（%）を入力します。2.6 / 3.0 / 3.5 / 4.0 / 4.5% のよく使う値もワンタップで選べます。積立金ローンは約 2.6%、商業ローン（LPR 基準）は約 3.0〜4.0% です。',
+    '填写贷款金额（单位：万元），可用 30 / 50 / 100 / 200 / 300 万快捷档位，也可自定义。':
+      '<b>借入額</b>（単位：万元）を入力します。30 / 50 / 100 / 200 / 300 万のボタンが使え、自由入力も可能です。',
+    '切换还款方式（等额本息 / 等额本金），自动对比总利息并给出建议。':
+      '<b>返済方式</b>（元利均等 / 元金均等）を切り替えると、利息合計を自動比較して提案を表示します。',
+    '选择还款期限（年），常用 10 / 20 / 25 / 30 年。':
+      '<b>返済期間</b>（年）を選びます。10 / 20 / 25 / 30 年が一般的です。',
+    '点击打开计算器 →开始计算。':
+      '<a href="./mortgage.html" class="cta">計算機を開く →</a> をクリックして計算を始めましょう。',
+    '优先用公积金：有公积金余额 / 可提取的，优先使用公积金贷款或组合贷。':
+      '<b>積立金を優先</b>：積立金の残高があり引き出せる場合は、積立金ローンまたは組み合わせローンを優先しましょう。',
+    '总利息 < 月供压力：选择哪种还款方式取决于你更在意「现金流平稳」还是「总利息最低」。':
+      '<b>利息合計 と 毎月の負担</b>：どちらの方式が良いかは、「キャッシュフローの安定」と「利息合計の最小化」のどちらを重視するかで決まります。',
+    '保留灵活性：若预期未来有较多闲钱，选等额本金 + 提前还款方案更划算。':
+      '<b>柔軟性を確保</b>：将来まとまった資金が入る見込みなら、元金均等 + 繰上返済の組み合わせが有利です。',
+    '避免高杠杆：月供占家庭月收入比例建议控制在 30%–40% 以内。':
+      '<b>過度なレバレッジを避ける</b>：毎月返済額は世帯月収の 30〜40% 以内が目安です。',
+    '输入贷款金额、年利率、还款期限，在等额本息 / 等额本金之间对比。实时输出月供、总利息、还款总额，并展开完整还款明细。':
+      '借入額・年利・返済期間を入力し、<b>元利均等返済 / 元金均等返済</b>を比較できます。毎月返済額・利息合計・返済総額をその場で表示し、返済予定表も展開します。'
+  },
+  p: [
+    [/^还款明细（前 12 期 · 共 (.+) 期）$/, function(m,a){ return '返済予定表（最初の 12 回 / 全 ' + a + ' 回）'; }],
+    [/^等额本息月供固定更易规划，总利息稍高 (.+)。$/, function(m,a){ return '元利均等は毎月一定で計画しやすく、利息合計は約 ' + tr(a) + ' 多くなります。'; }],
+    [/^等额本金总利息更低，可省 (.+)；但前期月供压力更大。$/, function(m,a){ return '元金均等は利息合計が少なく ' + tr(a) + ' 節約できますが、当初の返済負担は大きくなります。'; }],
+    [/^每月还款（(.*)）$/, function(m,a){ return '毎月返済額（' + tr(a) + '）'; }],
+    [/^合计（([\d,.]+) 期）$/, function(m,n){ return '合計（全 ' + n + ' 回）'; }],
+    [/^共 ([\d,.]+) 期 · 利率 (.+)$/, function(m,a,b){ return '全 ' + a + ' 回 · 金利 ' + b; }],
+    [/^首 (.+) \/ 末 (.+)$/, function(m,a,b){ return '初回 ' + tr(a) + ' / 最終回 ' + tr(b); }],
+    [/^占本金 (.+)$/, function(m,a){ return '元金の ' + a; }],
+    [/^本金 (.+)$/, function(m,a){ return '元金 ' + tr(a); }],
+    [/^利息 (.+)$/, function(m,a){ return '利息 ' + tr(a); }],
+    [/^(\d+) 年$/, function(m,n){ return n + '年'; }]
+  ]
+};
+
+  var D = window.__I18N || {};
+  var CJK = /[\u4e00-\u9fff]/;
+  var LANG = 'zh';
+  var BLOCK_SEL = 'p,li,dd,dt,td,th,h1,h2,h3';
+
+  /* —— 记录中文原文（标题/描述），切回中文时恢复 —— */
+  var ZH = {title: document.title, desc: '', ogT: '', ogD: ''};
+  (function(){
+    var m = document.querySelector('meta[name="description"]'); if (m) ZH.desc = m.getAttribute('content') || '';
+    var o = document.querySelector('meta[property="og:title"]'); if (o) ZH.ogT = o.getAttribute('content') || '';
+    var p = document.querySelector('meta[property="og:description"]'); if (p) ZH.ogD = p.getAttribute('content') || '';
+  })();
+
+  function cur(){ return D[LANG] || null; }
+  function norm(s){ return String(s == null ? '' : s).replace(/\s+/g, ' ').trim(); }
+  function stripTags(h){ return norm(String(h).replace(/<[^>]*>/g, ' ')); }
+
+  /* —— 源文案保留：始终从中文原文重译，切语言不残留 —— */
+  var SRC = new WeakMap();
+  function rec(n){ var r = SRC.get(n); if (!r) { r = {}; SRC.set(n, r); } return r; }
+
+  function tr(s){
+    if (s == null || s === '') return s;
+    var raw = String(s);
+    if (LANG === 'zh') return raw;
+    var d = cur(); if (!d) return raw;
+    var k = norm(raw); if (!k) return raw;
+    var i0 = raw.indexOf(k), lead = raw.slice(0, i0), tail = raw.slice(i0 + k.length);
+    var t = d.t || {};
+    if (t[k] !== undefined) return lead + t[k] + tail;            /* 整串命中 */
+    var ps = d.p || [];                                            /* 含变量的动态串 */
+    for (var i = 0; i < ps.length; i++) {
+      if (ps[i][0].test(k)) return lead + k.replace(ps[i][0], ps[i][1]) + tail;
+    }
+    return raw;
+  }
+
+  function trAttr(el, a){
+    var v = el.getAttribute && el.getAttribute(a);
+    if (!v || !CJK.test(v)) return;
+    var r = rec(el), key = 'a:' + a, s = r[key];
+    if (!s || s.last !== v) { s = r[key] = {src: v}; }
+    var out = tr(s.src);
+    if (out !== v) el.setAttribute(a, out);
+    s.last = out;
+  }
+
+  function trText(node){
+    var cur0 = node.nodeValue;
+    if (!cur0) return;
+    var r = rec(node), s = r.t;
+    if (!s || s.last !== cur0) { s = r.t = {src: cur0}; }
+    if (!CJK.test(s.src)) { s.last = cur0; return; }   /* 原文非中文，无需翻译 */
+    var out = tr(s.src);
+    if (out !== cur0) node.nodeValue = out;
+    s.last = out;
+  }
+
+  /* —— 整段（含内联标签）替换 —— */
+  function inBlock(n){
+    var e = (n.nodeType === 1) ? n : n.parentElement;
+    if (!e || !e.closest) return false;
+    var b = e.closest('[data-i18n-block]');
+    return !!b && b !== e;
+  }
+  function trBlock(el){
+    if (!el.matches || !el.matches(BLOCK_SEL)) return false;
+    if (!el.__zhHtml) {
+      el.__zhHtml = el.innerHTML;
+      /* 键必须与生成词典时的规则一致：直接用 textContent + 压缩空白（不可把标签换成空格） */
+      el.__zhKey = norm(el.textContent);
+    }
+    var key = el.__zhKey;
+    if (!key || !CJK.test(key)) return false;
+    var d = cur();
+    var html = d && d.b ? d.b[key] : null;
+    if (!html) {
+      /* 没有整段译文时，退回用「含变量」的正则（例如「还款明细（前 12 期 · 共 360 期）」） */
+      var ps = (d && d.p) || [];
+      for (var i = 0; i < ps.length; i++) {
+        if (ps[i][0].test(key)) { html = key.replace(ps[i][0], ps[i][1]); break; }
+      }
+    }
+    if (!html && !el.hasAttribute('data-i18n-block')) {
+      /* 页面直接以 ?lang=xx 打开时，块内容可能是「首次捕获之后」才由脚本渲染的
+         （例如计算器稍后才填出表格标题）——用当前文本重新捕获一次并重试 */
+      var nowKey = norm(el.textContent);
+      if (nowKey && nowKey !== key) {
+        el.__zhHtml = el.innerHTML;
+        el.__zhKey = nowKey;
+        return trBlock(el);
+      }
+    }
+    if (!html) return false;
+    el.setAttribute('data-i18n-block', '1');
+    var want = (LANG === 'zh') ? el.__zhHtml : html;
+    if (el.innerHTML !== want) el.innerHTML = want;
+    return true;
+  }
+
+  function trEl(n){
+    if (!n) return;
+    if (inBlock(n)) return;
+    if (n.nodeType === 3) { trText(n); return; }
+    if (n.nodeType !== 1) return;
+    if (trBlock(n)) return;                                        /* 整段已替换，不再深入 */
+    var AT = ['title','placeholder','aria-label','alt'];
+    for (var i = 0; i < AT.length; i++) trAttr(n, AT[i]);
+    for (var c = n.firstChild; c; c = c.nextSibling) trEl(c);
+  }
+
+  /* —— 标题 / 描述 / og —— */
+  function applyMeta(){
+    var d = cur(), m = d && d.m;
+    var isHome = /index\.html?$|\/$/.test(location.pathname) || location.pathname === '';
+    if (m) {
+      document.title = (isHome && m.titleHome) ? m.titleHome : m.title;
+      var a = document.querySelector('meta[name="description"]'); if (a && m.desc) a.setAttribute('content', m.desc);
+      var b = document.querySelector('meta[property="og:title"]'); if (b) b.setAttribute('content', (isHome && m.titleHome) || m.title || '');
+      var c = document.querySelector('meta[property="og:description"]'); if (c && m.desc) c.setAttribute('content', m.desc);
+    } else {
+      document.title = ZH.title;
+      var a2 = document.querySelector('meta[name="description"]'); if (a2 && ZH.desc) a2.setAttribute('content', ZH.desc);
+      var b2 = document.querySelector('meta[property="og:title"]'); if (b2 && ZH.ogT) b2.setAttribute('content', ZH.ogT);
+      var c2 = document.querySelector('meta[property="og:description"]'); if (c2 && ZH.ogD) c2.setAttribute('content', ZH.ogD);
+    }
+  }
+
+  function applyLang(){
+    document.documentElement.lang = (LANG === 'zh') ? 'zh-CN' : LANG;
+    applyMeta();
+    trEl(document.body);
+    var sel = document.getElementById('i18n-sel');
+    if (sel) sel.value = LANG;
+    try { localStorage.setItem('mortgage_lang', LANG); } catch(e){}
+  }
+  function setLang(l){
+    if (l !== 'zh' && !D[l]) return;
+    if (l === LANG) { applyLang(); return; }
+    LANG = l;
+    /* 整段替换的元素需要先复位为中文，再按新语言重译 */
+    var blocks = document.querySelectorAll('[data-i18n-block]');
+    for (var i = 0; i < blocks.length; i++) {
+      if (blocks[i].__zhHtml) blocks[i].innerHTML = blocks[i].__zhHtml;
+    }
+    applyLang();
+  }
+  window.setLang = setLang;
+  window.getLang = function(){ return LANG; };
+
+  /* —— 动态内容（计算器输出 / 表格）—— */
+  try {
+    new MutationObserver(function(rs){
+      if (LANG === 'zh') return;
+      for (var i = 0; i < rs.length; i++) {
+        var r = rs[i];
+        if (r.type === 'characterData') { trEl(r.target); }
+        else { for (var j = 0; j < r.addedNodes.length; j++) trEl(r.addedNodes[j]); }
+      }
+    }).observe(document.documentElement, { childList: true, subtree: true, characterData: true });
+  } catch(e){}
+
+  /* —— 语言选择器 —— */
+  function buildSwitcher(){
+    var wrap = document.createElement('div');
+    wrap.id = 'i18n-sw';
+    wrap.innerHTML = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg>'
+      + '<select id="i18n-sel" aria-label="语言 / Language">'
+      + LANGS.map(function(l){ return '<option value="' + l[0] + '">' + l[1] + '</option>'; }).join('')
+      + '</select>';
+    var host = document.querySelector('.top') || document.querySelector('.brand');
+    if (host) {
+      if (host.classList.contains('brand')) wrap.className = 'i18n-in-brand';
+      else wrap.className = 'i18n-in-top';
+      host.appendChild(wrap);
+    } else {
+      wrap.className = 'fixed';
+      document.body.appendChild(wrap);
+    }
+    var sel = document.getElementById('i18n-sel');
+    sel.value = LANG;
+    sel.addEventListener('change', function(){ setLang(sel.value); });
+  }
+
+  /* —— 启动：?lang= > localStorage > 自动（仅繁体/日语场景），默认中文 —— */
+  (function boot(){
+    var l = null;
+    try { l = new URLSearchParams(location.search).get('lang'); } catch(e){}
+    if (!l) { try { l = localStorage.getItem('mortgage_lang'); } catch(e){} }
+    if (!l || (l !== 'zh' && !D[l])) {
+      var n = (navigator.language || '').toLowerCase();
+      l = (n.indexOf('zh-tw') === 0 || n.indexOf('zh-hk') === 0 || n.indexOf('zh-mo') === 0) ? 'zh-Hant'
+        : (n.indexOf('ja') === 0) ? 'ja' : 'zh';
+    }
+    LANG = (l === 'zh' || D[l]) ? l : 'zh';
+    function start(){ buildSwitcher(); if (LANG !== 'zh') applyLang(); else { try { localStorage.setItem('mortgage_lang','zh'); } catch(e){} } }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+    else start();
+  })();
+})();
+</script>
+<!-- ===== /多语言 i18n ===== -->
 </head>
 <body>
 
@@ -214,6 +956,16 @@
 </div>
 
 <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">回到顶部</button>
+
+
+
+
+
+
+
+
+
+
 
 <!-- ===== 站点浮动操作条 UI · 源码见 ui/site-ui.html（由 deploy.py 自动注入，请勿手改此处副本） ===== -->
 <style>
