@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>房贷计算器 · 月供 / 总利息 / 还款明细</title>
+<meta name="description" content="免费在线房贷计算器：输入贷款金额、年利率、还款期限，实时计算等额本息 / 等额本金月供、总利息与还款总额，可展开逐期还款明细表，无需登录。">
+<meta name="keywords" content="房贷计算器,月供计算器,等额本息,等额本金,提前还款,房贷利率计算">
+<link rel="canonical" href="https://tools.li00000.xyz/mortgage.html">
+<style>
+  :root {
+    --indigo: #4f46e5;
+    --indigo-soft: #eef2ff;
+    --bg: #ffffff;
+    --ink: #18181b;
+    --ink-2: #52525b;
+    --ink-3: #a1a1aa;
+    --line: #e4e4e7;
+    --card: #ffffff;
+    --card-2: #f8f8f9;
+    --green: #16a34a;
+    --amber: #d97706;
+    --radius: 12px;
+    font-synthesis: none;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    margin: 0;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    color: var(--ink);
+    background: #fafafa;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 20px 80px;
+  }
+  /* Header */
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand .dot {
+    width: 28px; height: 28px; border-radius: 8px;
+    background: var(--indigo);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 700; font-size: 14px;
+  }
+  .brand h1 { font-size: 17px; font-weight: 600; margin: 0; letter-spacing: .2px; }
+  .tag {
+    font-size: 12px; color: var(--ink-3);
+    border: 1px solid var(--line);
+    background: var(--card);
+    padding: 5px 10px; border-radius: 999px;
+  }
+  /* Sub */
+  .sub {
+    font-size: 13px; color: var(--ink-2);
+    margin: 0 0 20px; max-width: 640px;
+  }
+  .sub b { color: var(--ink); }
+
+  /* Layout */
+  .grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+
+  /* Card */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  .card .hd {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .card .hd h2 { margin: 0; font-size: 14px; font-weight: 600; letter-spacing: .2px; }
+  .card .bd { padding: 18px; }
+
+  /* Form */
+  .field { margin-bottom: 16px; }
+  .field:last-child { margin-bottom: 0; }
+  .field label {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px; color: var(--ink-2); margin-bottom: 6px;
+  }
+  .field .u { color: var(--ink-3); font-size: 12px; }
+  .inputwrap { position: relative; }
+  .inputwrap .suffix {
+    position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+    font-size: 12px; color: var(--ink-3); pointer-events: none;
+  }
+  input[type="number"], input[type="text"] {
+    width: 100%;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px 34px 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: var(--card-2);
+    color: var(--ink);
+    outline: none;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  input:focus {
+    border-color: var(--indigo);
+    box-shadow: 0 0 0 3px var(--indigo-soft);
+    background: #fff;
+  }
+  .hint { font-size: 11px; color: var(--ink-3); margin-top: 6px; }
+
+  /* Segmented control */
+  .seg {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    overflow: hidden;
+    background: var(--card-2);
+  }
+  .seg button {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--ink-2);
+    padding: 9px 10px;
+    cursor: pointer;
+    transition: background .15s, color .15s;
+  }
+  .seg button + button { border-left: 1px solid var(--line); }
+  .seg button[aria-pressed="true"] {
+    background: #fff;
+    color: var(--indigo);
+    font-weight: 600;
+    box-shadow: inset 0 0 0 1px var(--indigo);
+  }
+  .seg-label { font-size: 12px; color: var(--ink-3); margin-bottom: 6px; }
+
+  /* Range presets */
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .chip {
+    appearance: none;
+    border: 1px solid var(--line);
+    background: #fff;
+    font-family: inherit;
+    font-size: 12px;
+    color: var(--ink-2);
+    border-radius: 999px;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .chip:hover { border-color: var(--indigo); color: var(--indigo); }
+  .chip[aria-pressed="true"] {
+    background: var(--indigo);
+    border-color: var(--indigo);
+    color: #fff;
+    font-weight: 600;
+  }
+
+  /* Results panel */
+  .summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 640px) {
+    .summary { grid-template-columns: repeat(2, 1fr); }
+  }
+  .metric {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px;
+    background: var(--card);
+  }
+  .metric .k { font-size: 12px; color: var(--ink-3); margin-bottom: 4px; }
+  .metric .v { font-size: 20px; font-weight: 650; color: var(--ink); letter-spacing: .3px; }
+  .metric.accent .v { color: var(--indigo); font-size: 24px; }
+  .metric .n { font-size: 11px; color: var(--ink-3); margin-top: 4px; }
+
+  .compare {
+    margin-top: 20px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--card);
+  }
+  .compare .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--line);
+  }
+  .compare .row:last-child { border-bottom: 0; }
+  .compare .cell {
+    padding: 12px 16px;
+  }
+  .compare .cell + .cell { border-left: 1px solid var(--line); }
+  .compare .label { font-size: 12px; color: var(--ink-3); margin-bottom: 2px; }
+  .compare .val { font-size: 17px; font-weight: 600; }
+  .compare .val.win { color: var(--green); }
+  .compare .val.lose { color: var(--ink-2); }
+  .compare .head .cell { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .compare .head .cell + .cell { background: var(--card-2); }
+
+  .bars {
+    margin-top: 20px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    background: var(--card);
+  }
+  .bars .bar-t { font-size: 12px; color: var(--ink-2); margin-bottom: 8px; display: flex; justify-content: space-between; }
+  .bar {
+    height: 10px;
+    background: var(--card-2);
+    border-radius: 999px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    position: relative;
+  }
+  .bar .fill {
+    position: absolute; inset: 0 auto 0 0;
+    background: var(--indigo);
+    transition: width .4s ease;
+  }
+  .legend { display: flex; gap: 14px; margin-top: 10px; font-size: 11px; color: var(--ink-2); }
+  .legend .sw { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: middle; }
+
+  /* Table */
+  .tblwrap {
+    margin-top: 20px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: auto;
+    background: var(--card);
+  }
+  .tblwrap h3 {
+    margin: 0; padding: 14px 16px 10px;
+    font-size: 13px; font-weight: 600;
+    border-bottom: 1px solid var(--line);
+  }
+  .tblwrap table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .tblwrap th, .tblwrap td {
+    padding: 9px 16px;
+    text-align: right;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+  }
+  .tblwrap th {
+    background: var(--card-2);
+    font-weight: 600;
+    color: var(--ink-2);
+    position: sticky; top: 0;
+  }
+  .tblwrap td:first-child, .tblwrap th:first-child { text-align: left; }
+  .tblwrap tr:last-child td { border-bottom: 0; }
+  .tblwrap tbody tr:hover td { background: var(--indigo-soft); }
+  .tblwrap .total td { font-weight: 650; background: var(--card-2); }
+
+  .footer {
+    margin-top: 40px;
+    font-size: 12px;
+    color: var(--ink-3);
+    text-align: center;
+    line-height: 1.7;
+  }
+  .footer a { color: var(--ink-2); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="brand">
+      <div class="dot">房</div>
+      <h1>房贷计算器</h1>
+    </div>
+    <div class="tag">单文件 · 零依赖 · 离线可用</div>
+  </div>
+
+  <p class="sub">输入<b>贷款金额、年利率、还款期限</b>，在<b>等额本息 / 等额本金</b>之间对比。实时输出月供、总利息、还款总额，并展开完整还款明细。</p>
+
+  <div class="grid">
+    <!-- ===== 输入面板 ===== -->
+    <div class="card">
+      <div class="hd">
+        <h2>贷款参数</h2>
+        <button class="chip" id="btnReset" style="padding:4px 10px;">重置</button>
+      </div>
+      <div class="bd">
+
+        <div class="field">
+          <label for="loan">贷款金额 <span class="u">万元</span></label>
+          <div class="inputwrap">
+            <input type="number" id="loan" min="1" max="3000" step="1" value="100">
+            <span class="suffix">万元</span>
+          </div>
+          <div class="hint">支持常见 30 / 50 / 100 / 200 / 300 万，可任意填写</div>
+          <div class="chips" id="loanChips"></div>
+        </div>
+
+        <div class="field">
+          <label for="rate">年利率 <span class="u">%</span></label>
+          <div class="inputwrap">
+            <input type="number" id="rate" min="0.1" max="20" step="0.01" value="3.5">
+            <span class="suffix">%</span>
+          </div>
+          <div class="hint">2024 年后常见 LPR 利率约 3.0–4.0%，公积金 2.6% 左右</div>
+          <div class="chips" id="rateChips"></div>
+        </div>
+
+        <div class="field">
+          <label for="years">还款期限 <span class="u">年</span></label>
+          <div class="inputwrap">
+            <input type="number" id="years" min="1" max="40" step="1" value="30">
+            <span class="suffix">年</span>
+          </div>
+          <div class="chips" id="yearChips"></div>
+        </div>
+
+        <div class="field">
+          <div class="seg-label">还款方式</div>
+          <div class="seg" id="methodSeg">
+            <button data-m="equal" aria-pressed="true">等额本息</button>
+            <button data-m="equal-prin" aria-pressed="false">等额本金</button>
+          </div>
+          <div class="hint" style="margin-top:8px;">两种均可查看明细，并自动对比总利息</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== 结果面板 ===== -->
+    <div>
+      <div class="card">
+        <div class="hd"><h2>计算结果</h2><span class="tag" style="font-size:11px;">实时刷新</span></div>
+        <div class="bd">
+          <div class="summary" id="summary"></div>
+
+          <div class="compare" id="compare"></div>
+
+          <div class="bars" id="bars"></div>
+
+          <div class="tblwrap">
+            <h3>还款明细（前 12 期 · 共 <span id="totMonths"></span> 期）</h3>
+            <table id="tbl">
+              <thead>
+                <tr>
+                  <th>期数</th><th>月供 / 还款额</th><th>本金</th><th>利息</th><th>剩余本金</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="footer">
+        贷款金额指<b>贷款本金</b>（非房价）。等额本息每月固定还款；等额本金每月本金固定、利息随余额递减。<br>
+        计算为估算，实际以银行还款计划为准。单文件 · 纯前端 · 数据仅存本地，刷新即重置。
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---------- 状态 ----------
+  const state = {
+    loan: 100,   // 万元
+    rate: 3.5,   // 年 %
+    years: 30,
+    method: "equal"
+  };
+
+  const PRESETS = {
+    loan: [30, 50, 100, 200, 300],
+    rate: [2.6, 3.0, 3.5, 4.0, 4.5],
+    years: [10, 20, 25, 30]
+  };
+
+  // ---------- 工具 ----------
+  const $ = (id) => document.getElementById(id);
+  const fmtWan = (n) =>
+    "¥" + n.toLocaleString("zh-CN", { maximumFractionDigits: 2 }) + " 万";
+  const fmtYuan = (n) =>
+    "¥" + Math.round(n).toLocaleString("zh-CN");
+  const fmt2 = (n) => n.toLocaleString("zh-CN", { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+
+  // ---------- 核心算法 ----------
+  // 等额本息：每月还款额固定
+  function calcEqual(prin, apr, months) {
+    const r = apr / 100 / 12;
+    const p = prin; // 元
+    const denom = Math.pow(1 + r, months);
+    const pmt = r === 0 ? p / months : (p * r * denom) / (denom - 1);
+    let bal = p;
+    const rows = [];
+    let totalInt = 0, totalPaid = 0;
+    for (let i = 1; i <= months; i++) {
+      const interest = bal * r;
+      let principal = pmt - interest;
+      if (i === months) principal = bal; // 误差收尾
+      bal -= principal;
+      if (bal < 0) bal = 0;
+      totalInt += interest;
+      totalPaid += pmt;
+      rows.push({ i, pay: pmt, principal, interest, bal });
+    }
+    return { pmt, totalInt, totalPaid, rows };
+  }
+
+  // 等额本金：每月本金固定，利息逐月递减
+  function calcEqualPrin(prin, apr, months) {
+    const r = apr / 100 / 12;
+    const p = prin;
+    const fixedPrin = p / months;
+    let bal = p;
+    const rows = [];
+    let totalInt = 0, totalPaid = 0;
+    for (let i = 1; i <= months; i++) {
+      const interest = bal * r;
+      const principal = i === months ? bal : fixedPrin;
+      const pay = principal + interest;
+      bal -= principal;
+      if (bal < 0) bal = 0;
+      totalInt += interest;
+      totalPaid += pay;
+      rows.push({ i, pay, principal, interest, bal });
+    }
+    return { firstPay: rows[0].pay, lastPay: rows[rows.length - 1].pay, totalInt, totalPaid, rows };
+  }
+
+  // ---------- 渲染 ----------
+  function render() {
+    const loanYuan = state.loan * 10000;
+    const months = state.years * 12;
+    const equal = calcEqual(loanYuan, state.rate, months);
+    const equalPrin = calcEqualPrin(loanYuan, state.rate, months);
+    const active = state.method === "equal" ? equal : equalPrin;
+
+    // 顶部指标
+    const monthlyVal = state.method === "equal"
+      ? equal.pmt
+      : "首月 " + fmtYuan(equalPrin.firstPay);
+    const monthlySub = state.method === "equal"
+      ? "每月固定"
+      : "末月 " + fmtYuan(equalPrin.lastPay) + " · 逐月递减";
+
+    $("summary").innerHTML = `
+      <div class="metric accent">
+        <div class="k">${state.method === "equal" ? "每月月供" : "首月月供"}</div>
+        <div class="v">${fmtYuan(state.method === "equal" ? equal.pmt : equalPrin.firstPay)}</div>
+        <div class="n">${monthlySub}</div>
+      </div>
+      <div class="metric">
+        <div class="k">还款总额</div>
+        <div class="v">${fmtWan(active.totalPaid / 10000)}</div>
+        <div class="n">本金 + 利息</div>
+      </div>
+      <div class="metric">
+        <div class="k">总利息</div>
+        <div class="v">${fmtWan(active.totalInt / 10000)}</div>
+        <div class="n">占本金 ${fmt2((active.totalInt / loanYuan) * 100)}%</div>
+      </div>
+      <div class="metric">
+        <div class="k">还款期数</div>
+        <div class="v">${state.years} 年</div>
+        <div class="n">共 ${months} 期 · 利率 ${state.rate}%</div>
+      </div>`;
+
+    // 对比
+    const diff = equalPrin.totalInt - equal.totalInt; // 正值: 等额本金利息更多? 不, 通常等额本金利息更低
+    const equalBetter = diff > 0; // 等额本金总利息低
+    const save = Math.abs(diff);
+    $("compare").innerHTML = `
+      <div class="row head">
+        <div class="cell">等额本息</div>
+        <div class="cell">等额本金</div>
+      </div>
+      <div class="row">
+        <div class="cell">
+          <div class="label">每月还款（${state.method === "equal" ? "当前" : ""}）</div>
+          <div class="val">${fmtYuan(equal.pmt)}</div>
+        </div>
+        <div class="cell">
+          <div class="label">每月还款（${state.method === "equal-prin" ? "当前" : ""}）</div>
+          <div class="val">首 ${fmtYuan(equalPrin.firstPay)} / 末 ${fmtYuan(equalPrin.lastPay)}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="cell">
+          <div class="label">总利息</div>
+          <div class="val ${equalBetter ? "" : "win"}">${fmtWan(equal.totalInt / 10000)}</div>
+        </div>
+        <div class="cell">
+          <div class="label">总利息</div>
+          <div class="val ${equalBetter ? "win" : ""}">${fmtWan(equalPrin.totalInt / 10000)}</div>
+        </div>
+      </div>
+      <div class="row" style="background:var(--card-2)">
+        <div class="cell" style="grid-column:1/-1;font-size:12px;color:var(--ink-2)">
+          ${equalBetter
+            ? `等额本金总利息更低，可省 ${fmtYuan(save)}；但前期月供压力更大。`
+            : `等额本息月供固定更易规划，总利息稍高 ${fmtYuan(save)}。`}
+        </div>
+      </div>`;
+
+    // 本金/利息占比条
+    const totalAll = active.totalPaid + active.totalInt;
+    const prinPct = (active.totalPaid / totalAll) * 100;
+    const intPct = (active.totalInt / totalAll) * 100;
+    $("bars").innerHTML = `
+      <div class="bar-t"><span>本金 / 利息 占比</span><span>${prinPct.toFixed(1)}% · ${intPct.toFixed(1)}%</span></div>
+      <div class="bar"><div class="fill" style="width:${prinPct}%"></div></div>
+      <div class="legend">
+        <span><span class="sw" style="background:var(--indigo)"></span>本金 ${fmtWan(active.totalPaid / 10000)}</span>
+        <span><span class="sw" style="background:var(--card-2);border:1px solid var(--line)"></span>利息 ${fmtWan(active.totalInt / 10000)}</span>
+      </div>`;
+
+    // 明细表（前 12 期）
+    $("totMonths").textContent = months;
+    const tbody = $("tbl").tBodies[0];
+    tbody.innerHTML = "";
+    const showRows = active.rows.slice(0, 12);
+    showRows.forEach((row) => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${row.i} / ${months}</td>
+        <td>${fmtYuan(row.pay)}</td>
+        <td>${fmtYuan(row.principal)}</td>
+        <td>${fmtYuan(row.interest)}</td>
+        <td>${fmtYuan(row.bal)}</td>`;
+      tbody.appendChild(tr);
+    });
+    // 合计行
+    const trSum = document.createElement("tr");
+    trSum.className = "total";
+    trSum.innerHTML = `
+      <td>合计（${months} 期）</td>
+      <td>${fmtWan(active.totalPaid / 10000)} 万</td>
+      <td>${fmtWan(loanYuan / 10000)} 万</td>
+      <td>${fmtWan(active.totalInt / 10000)} 万</td>
+      <td>—</td>`;
+    tbody.appendChild(trSum);
+  }
+
+  // ---------- 控件绑定 ----------
+  function bindChips(containerId, key, presets, inputId) {
+    const c = $(containerId);
+    c.innerHTML = "";
+    presets.forEach((v) => {
+      const b = document.createElement("button");
+      b.className = "chip";
+      b.textContent = key === "rate" ? v + "%" : key === "years" ? v + " 年" : v + " 万";
+      b.addEventListener("click", () => {
+        state[key] = v;
+        $(inputId).value = v;
+        syncChips();
+        render();
+      });
+      c.appendChild(b);
+    });
+  }
+
+  function syncChips() {
+    const groups = [
+      { c: "loanChips", key: "loan" },
+      { c: "rateChips", key: "rate" },
+      { c: "yearChips", key: "years" }
+    ];
+    groups.forEach(({ c, key }) => {
+      const el = $(c);
+      [...el.children].forEach((btn, idx) => {
+        const val = key === "rate" ? PRESETS.rate[idx] : key === "years" ? PRESETS.years[idx] : PRESETS.loan[idx];
+        btn.setAttribute("aria-pressed", String(val === state[key]));
+      });
+    });
+  }
+
+  // 数字输入
+  ["loan", "rate", "years"].forEach((id) => {
+    const el = $(id);
+    el.addEventListener("input", () => {
+      let v = parseFloat(el.value);
+      if (Number.isNaN(v)) v = 0;
+      if (id === "loan") v = Math.max(0.1, Math.min(5000, v));
+      if (id === "rate") v = Math.max(0, Math.min(30, v));
+      if (id === "years") v = Math.max(1, Math.min(50, Math.round(v)));
+      state[id] = v;
+      syncChips();
+      render();
+    });
+  });
+
+  // 还款方式
+  const seg = $("methodSeg");
+  seg.querySelectorAll("button").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      seg.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", "false"));
+      btn.setAttribute("aria-pressed", "true");
+      state.method = btn.dataset.m;
+      render();
+    });
+  });
+
+  // 重置
+  $("btnReset").addEventListener("click", () => {
+    state.loan = 100; state.rate = 3.5; state.years = 30; state.method = "equal";
+    $("loan").value = 100; $("rate").value = 3.5; $("years").value = 30;
+    seg.querySelectorAll("button").forEach((b, i) => b.setAttribute("aria-pressed", i === 0 ? "true" : "false"));
+    syncChips();
+    render();
+  });
+
+  // 初始化
+  bindChips("loanChips", "loan", PRESETS.loan, "loan");
+  bindChips("rateChips", "rate", PRESETS.rate, "rate");
+  bindChips("yearChips", "years", PRESETS.years, "years");
+  syncChips();
+  render();
+})();
+</script>
+</body>
+</html>
