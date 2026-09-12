@@ -646,5 +646,195 @@
   render();
 })();
 </script>
+<!-- ===== 站点浮动操作条 UI · 源码见 ui/site-ui.html（由 deploy.py 自动注入，请勿手改此处副本） ===== -->
+<style>
+#fab{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:9000;display:flex;flex-direction:column;gap:8px;font-family:inherit}
+.fab-btn{width:58px;padding:9px 4px 7px;background:#fff;border:1px solid #e4e4e7;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.07);display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;color:#52525b;font-size:11px;line-height:1.25;font-family:inherit;transition:color .16s,border-color .16s,background .16s,transform .16s,opacity .2s}
+.fab-btn:hover{color:#4f46e5;border-color:#c7d2fe;background:#f8f9ff;transform:translateY(-1px)}
+.fab-btn:active{transform:translateY(0)}
+.fab-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.fab-btn.on{color:#4f46e5;border-color:#c7d2fe;background:#eef2ff}
+#fab-top{opacity:0;visibility:hidden}
+#fab-top.show{opacity:1;visibility:visible}
+#fab-panel{position:absolute;right:66px;top:50%;transform:translateY(-50%) translateX(8px);width:244px;background:#fff;border:1px solid #e4e4e7;border-radius:14px;box-shadow:0 14px 44px rgba(0,0,0,.14);padding:12px;opacity:0;visibility:hidden;transition:opacity .18s,transform .18s,visibility .18s}
+#fab-panel.open{opacity:1;visibility:visible;transform:translateY(-50%) translateX(0)}
+.fab-h{font-size:11px;color:#a1a1aa;letter-spacing:.4px;margin:0 4px 6px;font-weight:600}
+.fab-h.gap{margin-top:10px}
+.fab-a{display:flex;align-items:center;gap:9px;padding:8px 9px;border-radius:9px;color:#18181b;text-decoration:none;font-size:13px;transition:background .14s,color .14s}
+.fab-a:hover{background:#f4f4f5;color:#4f46e5}
+.fab-a i{width:21px;height:21px;flex:none;display:flex;align-items:center;justify-content:center;background:#eef2ff;border-radius:6px;font-style:normal;font-size:11px;color:#4f46e5;font-weight:700}
+.fab-a em{font-style:normal;margin-left:auto;font-size:10px;color:#a1a1aa;flex:none}
+.fab-a.cur{color:#4f46e5;background:#f8f9ff}
+.fab-a.cur em{color:#4f46e5}
+.fab-sep{height:1px;background:#f0f0f1;margin:9px 4px}
+#fab-toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(14px);background:#18181b;color:#fff;font-size:13px;padding:10px 18px;border-radius:999px;box-shadow:0 8px 28px rgba(0,0,0,.22);opacity:0;visibility:hidden;transition:opacity .22s,transform .22s,visibility .22s;z-index:9100;font-family:inherit;max-width:84vw;text-align:center}
+#fab-toast.show{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+@media (max-width:720px){
+  #fab{right:8px;gap:6px}
+  .fab-btn{width:47px;font-size:10px;padding:7px 2px 6px;border-radius:10px;box-shadow:0 3px 12px rgba(0,0,0,.09)}
+  .fab-btn svg{width:16px;height:16px}
+  #fab-panel{right:54px;width:206px;padding:10px}
+}
+@media print{#fab,#fab-panel,#fab-toast{display:none!important}}
+</style>
+
+<div id="fab" role="navigation" aria-label="页面快捷操作">
+  <button class="fab-btn" id="fab-share" type="button" aria-label="分享本页" title="分享本页">
+    <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+    <span>分享</span>
+  </button>
+  <button class="fab-btn" id="fab-fav" type="button" aria-label="收藏本站" title="收藏本站">
+    <svg viewBox="0 0 24 24"><path d="M12 3.6l2.6 5.2 5.7.8-4.1 4 1 5.7-5.2-2.7-5.2 2.7 1-5.7-4.1-4 5.7-.8z"/></svg>
+    <span>收藏</span>
+  </button>
+  <button class="fab-btn" id="fab-jump" type="button" aria-label="快捷跳转" aria-expanded="false" aria-controls="fab-panel" title="快捷跳转">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.6 8.4l-2.1 5.1-5.1 2.1 2.1-5.1z"/></svg>
+    <span>跳转</span>
+  </button>
+  <button class="fab-btn" id="fab-top" type="button" aria-label="回到顶部" title="回到顶部">
+    <svg viewBox="0 0 24 24"><path d="M12 19V5M5.5 11.5L12 5l6.5 6.5"/></svg>
+    <span>顶部</span>
+  </button>
+  <div id="fab-panel" role="menu" aria-label="快捷跳转菜单"></div>
+</div>
+<div id="fab-toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  var IN_INDEX = /index\.html?$|\/$/.test(location.pathname);
+  var HERE = IN_INDEX ? 'index.html' : location.pathname.split('/').pop();
+  var PAGES = [
+    {h:'index.html',    t:'房贷计算器首页', i:'首'},
+    {h:'mortgage.html', t:'在线房贷计算器', i:'算'}
+  ];
+  var SITES = [
+    {u:'https://li00000.xyz/',           t:'在线PS',   i:'PS', d:'免费在线图片编辑'},
+    {u:'https://blog.li00000.xyz/',      t:'养老博客', i:'博', d:'三语退休规划指南'}
+  ];
+  var ANCHORS = [['#intro','什么是房贷计算器'],['#formula','月供公式'],
+                 ['#compare','两种还款方式对比'],['#usage','如何使用'],
+                 ['#faq','常见问题'],['#tip','使用建议']];
+
+  var fab   = document.getElementById('fab');
+  var panel = document.getElementById('fab-panel');
+  var toastEl = document.getElementById('fab-toast');
+  var btnJump = document.getElementById('fab-jump');
+  var btnFav  = document.getElementById('fab-fav');
+  var btnTop  = document.getElementById('fab-top');
+  var toastTimer = null;
+
+  function toast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2600);
+  }
+
+  // 移除页面自带的老式「回到顶部」按钮，避免与本操作条重复
+  var legacy = document.querySelector('.back-to-top');
+  if (legacy) legacy.style.display = 'none';
+
+  // ---------- 快捷跳转面板 ----------
+  function el(tag, cls, txt){ var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
+
+  function buildPanel(){
+    panel.innerHTML = '';
+    panel.appendChild(el('div','fab-h','本页导航'));
+    for (var i=0;i<PAGES.length;i++){
+      var p = PAGES[i];
+      var cur = (p.h === HERE) || (IN_INDEX && p.h === 'index.html');
+      var a = el('a','fab-a' + (cur ? ' cur' : ''));
+      a.href = './' + p.h;
+      a.setAttribute('role','menuitem');
+      a.appendChild(el('i', null, p.i));
+      a.appendChild(el('span', null, p.t));
+      a.appendChild(el('em', null, cur ? '当前' : ''));
+      panel.appendChild(a);
+    }
+    var hit = false;
+    for (var j=0;j<ANCHORS.length;j++){
+      if (!document.querySelector(ANCHORS[j][0])) continue;
+      hit = true;
+      var b = el('a','fab-a');
+      b.href = ANCHORS[j][0];
+      b.setAttribute('role','menuitem');
+      b.appendChild(el('i', null, '§'));
+      b.appendChild(el('span', null, ANCHORS[j][1]));
+      panel.appendChild(b);
+    }
+    panel.appendChild(el('div','fab-sep'));
+    panel.appendChild(el('div','fab-h gap','我的其他站点'));
+    for (var k=0;k<SITES.length;k++){
+      var s = SITES[k];
+      var c = el('a','fab-a');
+      c.href = s.u; c.target = '_blank'; c.rel = 'noopener';
+      c.setAttribute('role','menuitem');
+      c.appendChild(el('i', null, s.i));
+      c.appendChild(el('span', null, s.t));
+      c.appendChild(el('em', null, '↗'));
+      c.title = s.d;
+      panel.appendChild(c);
+    }
+  }
+  buildPanel();
+
+  function closePanel(){ panel.classList.remove('open'); btnJump.setAttribute('aria-expanded','false'); }
+
+  btnJump.addEventListener('click', function(e){
+    e.stopPropagation();
+    var open = panel.classList.toggle('open');
+    btnJump.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  panel.addEventListener('click', function(e){
+    e.stopPropagation();
+    if (e.target.closest('a')) closePanel();
+  });
+  document.addEventListener('click', closePanel);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closePanel(); });
+
+  // ---------- 分享 ----------
+  document.getElementById('fab-share').addEventListener('click', function(){
+    var meta = document.querySelector('meta[name="description"]');
+    var data = { title: document.title, text: (meta && meta.content) || '', url: location.href };
+    if (navigator.share) {
+      navigator.share(data)['catch'](function(){});
+      return;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(location.href).then(function(){
+        toast('链接已复制，可粘贴分享给朋友');
+      }, function(){ toast('请手动复制地址栏链接分享'); });
+      return;
+    }
+    toast('请手动复制地址栏链接分享');
+  });
+
+  // ---------- 收藏 ----------
+  var FAV_KEY = 'tools_fav';
+  function favRead(){ try { return localStorage.getItem(FAV_KEY) === '1'; } catch(e){ return false; } }
+  function favPaint(on){ if (on) btnFav.classList.add('on'); else btnFav.classList.remove('on'); }
+  favPaint(favRead());
+  btnFav.addEventListener('click', function(){
+    var on = !favRead();
+    try { localStorage.setItem(FAV_KEY, on ? '1' : '0'); } catch(e){}
+    favPaint(on);
+    toast(on ? '已收藏（按 Ctrl+D 可加入浏览器书签）' : '已取消收藏');
+  });
+
+  // ---------- 回到顶部 ----------
+  function onScroll(){
+    if (window.scrollY > 280) btnTop.classList.add('show');
+    else btnTop.classList.remove('show');
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  btnTop.addEventListener('click', function(){
+    try { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    catch(e) { window.scrollTo(0, 0); }
+  });
+})();
+</script>
+<!-- ===== /站点浮动操作条 UI ===== -->
+
 </body>
 </html>
