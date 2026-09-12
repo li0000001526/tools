@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# 对外入口（绝对地址，Google 要求）
+Sitemap: https://tools.li00000.xyz/sitemap.xml
+
+# 纯前端工具，无后台，无需 disallow 其他路径
